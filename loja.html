@@ -5,18 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Redirecionando...</title>
   <style>
-    /* Fundo branco e sem margens */
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #fff;
+    body, html {
+      margin: 0; padding: 0;
+      width: 100vw; height: 100vh;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    svg {
+      width: 300px;
+      height: 200px;
+      overflow: visible;
+    }
+
+    /* Trilho da montanha-russa */
+    .track {
+      fill: none;
+      stroke: #888;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.1));
+    }
+
+    /* Carrinho */
+    .cart {
+      fill: #e63946;
+      stroke: #d62828;
+      stroke-width: 2;
+      transform-origin: center;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+
+    /* Roda do carrinho */
+    .wheel {
+      fill: #1d3557;
+      stroke: #457b9d;
+      stroke-width: 1;
+    }
+
+    /* Animação do carrinho subindo e descendo */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateX(60px) translateY(-30px) rotate(-10deg);
+      }
+      50% {
+        transform: translateX(120px) translateY(0) rotate(0deg);
+      }
+      75% {
+        transform: translateX(180px) translateY(-30px) rotate(10deg);
+      }
+    }
+
+    /* Texto abaixo */
+    .text {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      user-select: none;
     }
   </style>
 </head>
 <body>
+
+  <svg viewBox="0 0 220 80" aria-label="Animação de montanha-russa" role="img" >
+    <!-- Trilho -->
+    <path class="track" d="M10 60 Q50 20, 90 60 T170 60" />
+    <!-- Carrinho -->
+    <g class="cart" >
+      <rect x="0" y="40" width="40" height="20" rx="5" ry="5" />
+      <circle class="wheel" cx="10" cy="65" r="6" />
+      <circle class="wheel" cx="30" cy="65" r="6" />
+    </g>
+  </svg>
+
+  <div class="text">Redirecionando, aguarde...</div>
+
   <script>
-    // Redireciona para o endereço desejado após carregar a página
-    window.location.href = "https://example.com";
+    // Faz o redirecionamento após 5 segundos
+    setTimeout(() => {
+      window.location.href = "https://example.com";
+    }, 5000);
   </script>
+
 </body>
 </html>
